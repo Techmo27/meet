@@ -1,6 +1,7 @@
 const { google } = require("googleapis");
 const OAuth2 = google.auth.OAuth2;
 const calendar = google.calendar("v3");
+<<<<<<< HEAD
 /**
  * SCOPES allows you to set access levels; this is set to readonly for now because you don't have access rights to
  * update the calendar yourself. For more info, check out the SCOPES documentation at this link: https://developers.google.com/identity/protocols/oauth2/scopes
@@ -11,6 +12,10 @@ const SCOPES = ["https://www.googleapis.com/auth/calendar.readonly"];
  * Credentials are those values required to get access to your calendar. If you see “process.env” this means
  * the value is in the “config.json” file. This is a best practice as it keeps your API secrets hidden. Please remember to add “config.json” to your “.gitignore” file.
  */
+=======
+const SCOPES = ["https://www.googleapis.com/auth/calendar.readonly"];
+
+>>>>>>> ac60d16f36cf9aa4e029461cf1781bb3b7cab15c
 const credentials = {
   client_id: process.env.CLIENT_ID,
   project_id: process.env.PROJECT_ID,
@@ -19,7 +24,11 @@ const credentials = {
   auth_uri: "https://accounts.google.com/o/oauth2/auth",
   token_uri: "https://oauth2.googleapis.com/token",
   auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
+<<<<<<< HEAD
   redirect_uris: ["https://Techmo27.github.io/meet/"],
+=======
+  redirect_uris: ["https://Techmo27.github.io/meet"],
+>>>>>>> ac60d16f36cf9aa4e029461cf1781bb3b7cab15c
   javascript_origins: ["https://Techmo27.github.io", "http://localhost:3000"],
 };
 const { client_secret, client_id, redirect_uris, calendar_id } = credentials;
@@ -29,6 +38,7 @@ const oAuth2Client = new google.auth.OAuth2(
   redirect_uris[0]
 );
 
+<<<<<<< HEAD
 /**
  *
  * The first step in the OAuth process is to generate a URL so users can log in with
@@ -44,6 +54,10 @@ module.exports.getAuthURL = async () => {
    *  scopes are the ones users will see when the consent screen is displayed to them.
    *
    */
+=======
+module.exports.getAuthURL = async () => {
+
+>>>>>>> ac60d16f36cf9aa4e029461cf1781bb3b7cab15c
   const authUrl = oAuth2Client.generateAuthUrl({
     access_type: "offline",
     scope: SCOPES,
@@ -98,6 +112,7 @@ module.exports.getAccessToken = async (event) => {
         body: JSON.stringify(err),
       };
     });
+<<<<<<< HEAD
 };
 
 module.exports.getCalendarEvents = async (event) => {
@@ -153,3 +168,6 @@ module.exports.getCalendarEvents = async (event) => {
     });
 
 }
+=======
+};
+>>>>>>> ac60d16f36cf9aa4e029461cf1781bb3b7cab15c
