@@ -22,13 +22,10 @@ functions:
     events:
       - http:
           path: api/token/{code}
-<<<<<<< HEAD
           method: get
   getCalendarEvents:
     handler: handler.getCalendarEvents
     events:
       - http:
           path: api/get-events/{access_token}
-=======
->>>>>>> ac60d16f36cf9aa4e029461cf1781bb3b7cab15c
           method: get
