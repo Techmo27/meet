@@ -5,10 +5,12 @@ import EventList from '../EventList';
 import CitySearch from '../CitySearch';
 import NumberOfEvents from '../NumberOfEvents';
 import { mockData } from '../mock-data';
-import { extractLocations, getEvents } from '../api';
+import { extractLocations, getEvents } from "../api";
+
 
 describe('<App /> component', () => {
   let AppWrapper;
+
   beforeAll(() => {
     AppWrapper = shallow(<App />);
   });
@@ -66,4 +68,13 @@ describe('<App /> integration', () => {
     expect(AppWrapper.state('events')).toEqual(allEvents);
     AppWrapper.unmount();
   });
+
+  test("passes the number of events state", () => {
+    const AppWrapper = mount(<App />);
+    const AppNumberOfEventsState = AppWrapper.state("numberOfEvents");
+    expect(AppNumberOfEventsState).not.toEqual(undefined);
+    expect(AppWrapper.find(EventList).props().numberOfEvents).toEqual(32);
+    AppWrapper.unmount();
+  });
+
 });
