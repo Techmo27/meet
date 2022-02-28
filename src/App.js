@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import './App.css';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
-import { mockData } from './mock-data';
 import { getEvents, extractLocations } from './api';
+
+import './nprogress.css';
 
 
 class App extends Component {
@@ -47,7 +48,3 @@ class App extends Component {
 }
 
 export default App;
-
-export const getEvents = async () => {
-  return mockData;
-};
