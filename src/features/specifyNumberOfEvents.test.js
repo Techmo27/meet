@@ -7,10 +7,10 @@ import App from '../App';
 const feature = loadFeature('./src/features/specifyNumberOfEvents.feature');
 
 defineFeature(feature, test => {
-  test('When user hasn’t specified a number, 32 is the default number. ', ({ given, when, then }) => {
+  test('When user hasn’t specified a number, 32 is the default number.', ({ given, when, then }) => {
     let AppWrapper;
     given('the user hasn’t specified how many events should be listed on a page', () => {
-      AppWrapper = await mount(<App />);
+      AppWrapper = mount(<App />);
     });
 
     when('the user is on the main page', () => {
@@ -26,7 +26,7 @@ defineFeature(feature, test => {
   test('User can change the number of events they want to see.', ({ given, when, then }) => {
     let AppWrapper;
     given('the main page is open', () => {
-      AppWrapper = await mount(<App />);
+      AppWrapper = mount(<App />);
     });
 
     when('they pass the number of events they want to be listed in the corresponding form', () => {

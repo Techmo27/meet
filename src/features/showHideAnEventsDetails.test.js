@@ -10,7 +10,7 @@ defineFeature(feature, test => {
   test('An event element is collapsed by default.', ({ given, when, then }) => {
     let AppWrapper;
     given('the main page is open', () => {
-      AppWrapper = await mount(<App />);
+      AppWrapper = mount(<App />);
       AppWrapper.update();
     });
 
