@@ -20,7 +20,7 @@ class App extends Component {
     getEvents().then((events) => {
       if (this.mounted) {
         this.setState({
-          events,
+          events: events.slice(0, this.state.numberOfEvents),
           locations: extractLocations(events),
         });
       }
@@ -49,16 +49,6 @@ class App extends Component {
     this.updateEvents(currentLocation, eventCount);
   }
 
-  getData = () => {
-    const { locations, events } = this.state;
-    const data = locations.map((location) => {
-      const number = events.filter((event) => event.location === location).length
-      const city = location.split(', ').shift()
-      return { city, number };
-    })
-    return data;
-  };
-
   render() {
     return (
       <div className="App">
@@ -69,8 +59,9 @@ class App extends Component {
           updateEvents={this.updateEvents}
         />
         <NumberOfEvents
+          updateEvents={this.updateEvents}
           numberOfEvents={this.state.numberOfEvents}
-          updateNumberOfEvents={this.updateNumberOfEvents} />
+        />
         <EventList
           events={this.state.events}
         />
