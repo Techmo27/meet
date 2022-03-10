@@ -1,54 +1,41 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { ErrorAlert } from './Alert';
 
 class NumberOfEvents extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      number: 32,
-      errorText: null
-    };
-  }
+  state = {
+    numberOfEvents: 32,
+    errorText: ''
+  };
 
   handleInputChanged = (event) => {
-    let value = event.target.value;
-    let cleanedValue = this.RemoveNonNumeric(value);
-
-    if (value !== cleanedValue) {
+    const number = event.target.value;
+    if (number < 1 || number > 32) {
       this.setState({
-        number: cleanedValue,
-        errorText: true
+        numberOfEvents: '',
+        errorText: 'Please enter a number between 1 and 32',
       })
     } else {
       this.setState({
-        number: cleanedValue,
-        errorText: false
+        numberOfEvents: number,
+        errorText: '',
       });
     }
-
-    if (this.props.updateNumberOfEvents)
-      this.props.updateNumberOfEvents(cleanedValue);
-
-  }
-
-  RemoveNonNumeric = (text) => {
-    return text.replace(/[^0-9]/g, '');
-  }
-
+  };
 
   render() {
-    const { number, errorText } = this.state;
-    const errorMessage = 'Number of Events must be a non-negative integer';
     return (
-      <div className="events">
-        {errorText && <ErrorAlert text={errorMessage} />}
-        <div>
-          <label>Number of Events:</label>
-          <input value={this.state.number} onChange={this.handleInputChanged} />
-        </div>
+      <div className="numberOfEvents">
+        <label>Number of Events: </label>
+        <input
+          type="text"
+          name="number"
+          className="number-of-events"
+          value={this.props.numberOfEvents}
+          onChange={(e) => this.handleInputChanged(e)}
+        />
+        <ErrorAlert text={this.state.errorText} />
       </div>
-    )
+    );
   }
 }
 
