@@ -35,7 +35,7 @@ class NumberOfEvents extends Component {
           value={numberOfEvents}
           onChange={this.handleInputChanged}
         />
-        {displayErrorText && <ErrorAlert text={'Number of events must be smaller than 32'} />}
+        {errorText && <ErrorAlert text={'Number of events must be smaller than 32'} />}
       </div>
     );
   }
