@@ -12,7 +12,7 @@ class App extends Component {
   state = {
     events: [],
     locations: [],
-    numberOfEvents: 32,
+    numberOfEvents: '32',
   };
 
   componentDidMount() {
@@ -31,40 +31,39 @@ class App extends Component {
     this.mounted = false;
   }
 
-  updateEvents = (location, eventCount) => {
+  updateEvents = (location = 'all', number = this.state.numberOfEvents) => {
     getEvents().then((events) => {
-      const locationEvents =
-        location === "all"
-          ? events
-          : events.filter((event) => event.location === location);
-      if (this.mounted) {
-        this.setState({
-          events: locationEvents.slice(0, this.state.numberOfEvents),
-          currentLocation: location,
-        });
-      }
+      const locationEvents = (location === 'all') ?
+        events.slice(0, number) :
+        events.filter((event) => event.location === location).slice(0, number);
+
+      this.setState({
+        events: locationEvents.slice(0, number),
+        location
+      });
     });
-  };
+  }
+
+  updateNumberOfEvents = (numberOfEvents) => {
+    this.setState({
+      numberOfEvents
+    }, this.updateEvents(this.state.location, numberOfEvents));
+  }
 
   render() {
+    const { events, locations, numberOfEvents } = this.state;
     return (
       <div className="App">
-        <h1>Meet App</h1>
-        <h3>Choose a city</h3>
-        <CitySearch
-          locations={this.state.locations}
-          updateEvents={this.updateEvents}
-        />
-        <NumberOfEvents
-          updateEvents={this.updateEvents}
-          numberOfEvents={this.state.numberOfEvents}
-        />
-        <EventList
-          events={this.state.events}
-        />
-      </div>
+        <div id="App__header">
+          <h1>Meet App</h1>
+        </div>
+        <CitySearch locations={locations} numberOfEvents={numberOfEvents} updateEvents={this.updateEvents} />
+        <NumberOfEvents updateNumberOfEvents={number => { this.updateNumberOfEvents(number) }} currentNumberOfEvents={events.length} />
+        <EventList events={events} numberOfEvents={numberOfEvents} />
+      </div >
     );
   }
 }
+
 
 export default App;
