@@ -4,8 +4,8 @@ import { ErrorAlert } from './Alert';
 class NumberOfEvents extends Component {
   state = {
     numberOfEvents: 32,
-    errorText: ''
-  };
+    errorText: '',
+  }
 
   handleInputChanged = (event) => {
     const number = event.target.value;
@@ -20,6 +20,7 @@ class NumberOfEvents extends Component {
         errorText: '',
       });
     }
+    this.props.updateNumberOfEvents(event.target.value);
   };
 
   render() {
@@ -27,10 +28,9 @@ class NumberOfEvents extends Component {
       <div className="numberOfEvents">
         <label>Number of Events: </label>
         <input
-          type="text"
-          name="number"
+          type="number"
           className="number-of-events"
-          value={this.props.numberOfEvents}
+          value={this.state.numberOfEvents}
           onChange={(e) => this.handleInputChanged(e)}
         />
         <ErrorAlert text={this.state.errorText} />
