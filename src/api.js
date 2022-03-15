@@ -3,22 +3,7 @@ import axios from 'axios';
 import { mockData } from './mock-data';
 import NProgress from 'nprogress';
 
-const removeQuery = () => {
-  if (window.history.pushState && window.location.pathname) {
-    var newurl =
-      window.location.protocol +
-      "//" +
-      window.location.host +
-      window.location.pathname;
-    window.history.pushState("", "", newurl);
-  } else {
-    newurl = window.location.protocol + "//" + window.location.host;
-    window.history.pushState("", "", newurl);
-  }
-};
-
-/**
- * @param {*} events:
+/** @param {*} events:
  */
 export const extractLocations = (events) => {
   var extractLocations = events.map((event) => event.location);
@@ -86,6 +71,20 @@ export const getAccessToken = async () => {
   }
   return accessToken;
 
+};
+
+const removeQuery = () => {
+  if (window.history.pushState && window.location.pathname) {
+    var newurl =
+      window.location.protocol +
+      "//" +
+      window.location.host +
+      window.location.pathname;
+    window.history.pushState("", "", newurl);
+  } else {
+    newurl = window.location.protocol + "//" + window.location.host;
+    window.history.pushState("", "", newurl);
+  }
 };
 
 const getToken = async (code) => {
