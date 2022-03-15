@@ -29,13 +29,20 @@ class App extends Component {
     this.mounted = false;
   }
 
-  updateEvents = (location) => {
+  updateEvents = (location, numOfEvents) => {
     getEvents().then((events) => {
-      const locationEvents = (location === 'all') ? events : events.filter((event) => event.location === location);
-      const shownEvents = locationEvents.slice(0, this.state.numberOfEvents);
+      let locationEvents;
+      if(location === 'all' && numOfEvents === 0){
+        locationEvents = events
+      } else if(location !== 'all' && numOfEvents === 0){
+        locationEvents = events.filter((event) => event.location === location);
+      } else if (location === '' && numOfEvents > 0) {
+        locationEvents = events.slice(0, numOfEvents);
+      }
       this.setState({
-        events: shownEvents,
-        currentLocation: location
+        events: locationEvents,
+        currentLocation: location,
+        numberOfEvents: numOfEvents
       });
     });
   }

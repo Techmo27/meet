@@ -3,6 +3,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 
 import App from '../App';
+import { mockData } from "../mock-data";
 
 const feature = loadFeature('./src/features/specifyNumberOfEvents.feature');
 
@@ -18,7 +19,7 @@ defineFeature(feature, test => {
     });
 
     then('32 events are listed on the page by default.', () => {
-      expect(AppWrapper.find('.event')).toHaveLength(2);
+      expect(AppWrapper.find('.event')).toHaveLength(mockData.length);
     });
 
   });
@@ -32,7 +33,7 @@ defineFeature(feature, test => {
     when('they pass the number of events they want to be listed in the corresponding form', () => {
       AppWrapper.update();
       const eventObject = { target: { value: 1 } };
-      AppWrapper.find('.number-of-events__input').simulate('change', eventObject);
+      AppWrapper.find('.number-of-events').simulate('change', eventObject);
     });
     then('they will be able to see the exact number of events listed at once.', () => {
       AppWrapper.update();

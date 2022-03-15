@@ -4,9 +4,10 @@ import NumberOfEvents from "../NumberOfEvents";
 
 describe("<NumberOfEvents /> component", () => {
   let NumberOfEventsWrapper;
-
+  const updateEvents = jest.fn()
   beforeAll(() => {
-    NumberOfEventsWrapper = shallow(<NumberOfEvents />);
+    NumberOfEventsWrapper = shallow(<NumberOfEvents updateEvents={updateEvents}
+      numberOfEvents={32} />);
   });
 
   test("render text input", () => {
@@ -16,13 +17,13 @@ describe("<NumberOfEvents /> component", () => {
   test("render text input correctly", () => {
     const numberOfEvents = NumberOfEventsWrapper.state("numberOfEvents");
     expect(
-      NumberOfEventsWrapper.find("#numberOfEvents__input").prop("value")
+      NumberOfEventsWrapper.find(".number-of-events").prop("value")
     ).toBe(numberOfEvents);
   });
 
   test("change state when input changes", () => {
     const eventObject = { target: { value: 32 } };
-    NumberOfEventsWrapper.find("#numberOfEvents__input").simulate(
+    NumberOfEventsWrapper.find(".number-of-events").simulate(
       "change",
       eventObject
     );
