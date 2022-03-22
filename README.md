@@ -15,17 +15,17 @@ upcoming events.*
 
 **Technical Data**
 
-● The app is a React application.
-● The app is built using the TDD technique.
-● The app uses the Google Calendar API and OAuth2 authentication flow.
-● The app uses serverless functions (AWS lambda is preferred) for the authorization
+* The app is a React application.
+* The app is built using the TDD technique.
+* The app uses the Google Calendar API and OAuth2 authentication flow.
+* The app uses serverless functions (AWS lambda is preferred) for the authorization
 server instead of using a traditional server.
-● The app works on the latest versions of Chrome, Firefox, Safari, Edge, and Opera,
+* The app works on the latest versions of Chrome, Firefox, Safari, Edge, and Opera,
 as well as on IE11.
-● The app displays well on all screen sizes (including mobile and tablet) widths of
+* The app displays well on all screen sizes (including mobile and tablet) widths of
 1920px and 320px.
-● The app passes Lighthouse’s PWA checklist.
-● The app works offline or in slow network conditions with the help of a service
+* The app passes Lighthouse’s PWA checklist.
+* The app works offline or in slow network conditions with the help of a service
 worker.
-● Users are able to install the app on desktop and add the app to their home screen
+* Users are able to install the app on desktop and add the app to their home screen
 on mobile.
